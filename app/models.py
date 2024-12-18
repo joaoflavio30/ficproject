@@ -1,7 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.utils import timezone
+import datetime
 
 # Create your models here.
-from django.db import models
 
 class Cadete(models.Model):
     id_cadete = models.AutoField(primary_key=True)
@@ -18,3 +20,18 @@ class Cadete(models.Model):
     def __str__(self):
         return self.login
 
+
+
+def get_first_rank_days(self):
+        return (timezone.now() + datetime.timedelta(days=30)).date()
+
+class CadetProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='cadet_profile')
+    hours = models.PositiveIntegerField(default=0)
+    current_project = models.CharField(max_length=100, null=True)
+    past_projects = models.JSONField(null=True)
+    black_hole_day = models.DateField(default=get_first_rank_days)
+    means_of_contact = models.JSONField()
+
+    def __str__(self):
+        return self.user.name
