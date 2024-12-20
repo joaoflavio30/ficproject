@@ -17,8 +17,8 @@
 
 		<div class="grid">
 
-		  <form action="https://httpbin.org/post" method="POST" class="form login">
-
+		  <form action="{% url 'profile:list_cadete' %}" method="POST" class="form login">
+			{% csrf_token %}
 			<div class="form__field">
 			  <label for="login__username"><svg class="icon">
 				  <use xlink:href="#icon-user"></use>
@@ -36,7 +36,13 @@
 			<div class="form__field">
 			  <input type="submit" value="Sign In">
 			</div>
-
+			<div>
+				{% if errors %}
+					{% for error in errors %}
+						<p>{{ error }}</p>
+					{% endfor %}
+				{% endif %}
+			</div>
 		  </form>
 
 		  <p class="text--center">Not a member? <a href="#">Sign up now</a> <svg class="icon">
