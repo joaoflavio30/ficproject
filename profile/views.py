@@ -26,7 +26,7 @@ def list_cadete(request):
 
     return render(request, 'index.html')
 
-def login(request):
+def login_view(request):
     if request.method == 'GET':
         return render(request, 'login.html')
     try:
@@ -34,14 +34,18 @@ def login(request):
         if user is not None:
             login(request, user)
             return redirect(reverse('profile:cadet_profile'))
+        print('salada')
+        return render(request, 'test.html')
     except Exception as e:
-        print("INVALID USER")
+        print(f"INVALID USER {e}")
         return redirect(reverse('profile:login'))
     return redirect(reverse('profile:login'))
 
 @login_required(login_url=reverse_lazy('profile:login'))
 def profile(request):
-    return HttpResponse("hello world")
+    user = request.user
+    profile = CadetProfile.objects.get(user=user)
+    return render(request, 'profile.html', {'profile': profile})
 
 
 def my_view(request):

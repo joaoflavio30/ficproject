@@ -6,6 +6,13 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Hello World</h1>
+    {% if profile %}
+        <p>name: {{ profile.user.username }}</p>
+        <p>telephone: {{ profile.means_of_contact.telephone }}</p>
+        <p>hours: {{ profile.hours }}</p>
+        <p>blackhole date: {{ profile.black_hole_day }}</p>
+    {% else %}
+        <h1>No user logged in</h1>
+    {% endif %}
 </body>
 </html>
