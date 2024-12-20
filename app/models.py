@@ -3,8 +3,9 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 import datetime
 
-# Create your models here.
 
+
+# Create your models here.
 class Cadete(models.Model):
     id_cadete = models.AutoField(primary_key=True)
     login = models.CharField(max_length=50, unique=True)
@@ -21,9 +22,8 @@ class Cadete(models.Model):
         return self.login
 
 
-
 def get_first_rank_days(self):
-        return (timezone.now() + datetime.timedelta(days=30)).date()
+    return (timezone.now() + datetime.timedelta(days=30)).date()
 
 class CadetProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='cadet_profile')
