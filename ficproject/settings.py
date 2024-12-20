@@ -113,12 +113,17 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
+BASE_DIR = Path(__file__).resolve().parent.parent
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+OAUTH2_CLIENT_ID = "u-s4t2ud-966e89a40814992a44df4df6f7f8bd5993e6a608ec0fa552c4655ab511777f5c"
+OAUTH2_CLIENT_SECRET = "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"
+OAUTH2_TOKEN_URL = "https://api.intra.42.fr/oauth/token"
+OAUTH2_API_BASE_URL = "https://api.intra.42.fr"
